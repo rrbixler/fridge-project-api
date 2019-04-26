@@ -1,4 +1,4 @@
-class GroceriesController < ApplicationController
+class GroceriesController < OpenReadController
   before_action :set_grocery, only: [:show, :update, :destroy]
 
   # GET /groceries
@@ -15,10 +15,10 @@ class GroceriesController < ApplicationController
 
   # POST /groceries
   def create
-    @grocery = Grocery.new(grocery_params)
+    @grocery = current_user.groceries.build(grocery_params)
 
     if @grocery.save
-      render json: @grocery, status: :created, location: @grocery
+      render json: @grocery, status: :created
     else
       render json: @grocery.errors, status: :unprocessable_entity
     end
@@ -42,11 +42,13 @@ class GroceriesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_grocery
-    @grocery = Grocery.find(params[:id])
+    @grocery = current_user.groceries.find(params[:id])
   end
 
-  # Only allow a trusted parameter "white list" through.
+  # Only allow a trusted parameter "white list" through
+
   def grocery_params
-    params.require(:grocery).permit(:name, :amount, :food_type)
+    params.require(:grocery)
+          .permit(:name, :amount, :food_type)
   end
 end
