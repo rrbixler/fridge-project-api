@@ -49,6 +49,6 @@ class GroceriesController < OpenReadController
 
   def grocery_params
     params.require(:grocery)
-          .permit(:name, :amount, :food_type)
+          .permit(:name, :amount, :food_type, :user_id)
   end
 end
