@@ -1,4 +1,4 @@
-class GroceriesController < ProtectedController
+class GroceriesController < OpenReadController
   before_action :set_grocery, only: [:show, :update, :destroy]
   # skip_before_action :authenticate, only: %i[index]
   # GET /groceries

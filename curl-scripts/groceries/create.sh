@@ -10,6 +10,7 @@ curl "http://localhost:4741/groceries" \
       "name": "'"${NAME}"'",
       "amount": "'"${AMNT}"'",
       "food_type": "'"${TYPE}"'"
+      "user_id": "'"${USERID}"'"
     }
   }'
 
