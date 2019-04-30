@@ -15,7 +15,7 @@ class GroceriesController < OpenReadController
   end
 
   def category
-    render json: current_user.groceries.where(food_type: :food_type)
+    render json: current_user.groceries.where(food_type: params[:food_type])
   end
 
   # POST /groceries
