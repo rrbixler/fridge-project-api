@@ -1,9 +1,9 @@
-class GroceriesController < OpenReadController
+class GroceriesController < ProtectedController
   before_action :set_grocery, only: [:show, :update, :destroy]
-
+  # skip_before_action :authenticate, only: %i[index]
   # GET /groceries
   def index
-    @groceries = Grocery.all
+    @groceries = current_user.groceries.all
 
     render json: @groceries
   end
