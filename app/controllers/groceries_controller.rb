@@ -1,5 +1,6 @@
 class GroceriesController < OpenReadController
   before_action :set_grocery, only: [:show, :update, :destroy]
+  # before_action :set_category, only: [:category]
   # skip_before_action :authenticate, only: %i[index]
   # GET /groceries
   def index
@@ -11,6 +12,10 @@ class GroceriesController < OpenReadController
   # GET /groceries/1
   def show
     render json: @grocery
+  end
+
+  def category
+    render json: current_user.groceries.where(food_type: :food_type)
   end
 
   # POST /groceries
